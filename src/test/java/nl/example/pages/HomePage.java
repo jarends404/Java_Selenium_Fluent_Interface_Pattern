@@ -5,24 +5,20 @@ import org.openqa.selenium.WebElement;
 
 public class HomePage extends BasePage {
 
-    private static final String MY_ACCOUNT_LINK_TEXT = "My Account";
-    private static final String REGISTER_LINK_TEXT = "Register";
+    private static final String MY_ACCOUNT_SPAN = "span[class='title']";
+
+    private static final String MY_ACCOUNT_TEXT = "My account";
 
     public static HomePage homePage() {
         return new HomePage();
     }
 
-    public AccountRegistrationPage openAccountRegistrationPage() {
-        openMyAccountMenu().register().click();
-        return new AccountRegistrationPage();
+    public LoginPage openLoginPage() {
+        myAccount().click();
+        return new LoginPage();
     }
 
-    private HomePage openMyAccountMenu() {
-        getBrowser().findElementByLinkText(MY_ACCOUNT_LINK_TEXT).click();
-        return this;
-    }
-
-    private WebElement register() {
-        return getBrowser().findElementByLinkText(REGISTER_LINK_TEXT);
+    private WebElement myAccount() {
+        return getBrowser().findElementByText(MY_ACCOUNT_SPAN, MY_ACCOUNT_TEXT);
     }
 }

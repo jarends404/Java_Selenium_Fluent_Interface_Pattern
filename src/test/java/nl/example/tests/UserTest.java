@@ -9,7 +9,13 @@ public class UserTest extends BaseTest {
 
     @Test
     public void testRegisterUser() {
-        homePage().openAccountRegistrationPage();
+        homePage().openLoginPage()
+                .openAccountRegistrationPage()
+                .verifyHeader()
+                .registerUser()
+                .verifyRegristationSuccesful()
+                .continueToMyAccount()
+                .verifyHeader();
     }
 
 }

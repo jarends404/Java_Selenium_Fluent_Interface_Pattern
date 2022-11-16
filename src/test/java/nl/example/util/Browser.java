@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 /**
@@ -115,6 +116,7 @@ public class Browser {
 
     /**
      * Returns the first web element that matches the link text.
+     * The text has to be between <a></a> tags.
      * Waits for the page to be fully loaded before searching the web element.
      *
      * @param linkText  link text
@@ -124,6 +126,21 @@ public class Browser {
         wait.until(webDriver -> ((JavascriptExecutor) webDriver)
                 .executeScript(GET_PAGE_READYSTATE).equals(READYSTATE_COMPLETE));
         return driver.findElement(By.linkText(linkText));
+    }
+
+    /**
+     * Returns the first web element that matches the text.
+     * The text can be either within the node itself, or within a child node.
+     * Waits for the page to be fully loaded before searching the web element.
+     *
+     * @param selector  CSS selector
+     * @param text      text
+     * @return          WebElement
+     */
+    public WebElement findElementByText(String selector, String text) {
+        return findElementsByCSS(selector).stream()
+                .filter(webElement -> webElement.getText().contains(text))
+                .findFirst().orElseThrow(() -> new NoSuchElementException("no such element: Unable to locate element: " + selector));
     }
 
     public String getPageSource() {
