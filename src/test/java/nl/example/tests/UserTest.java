@@ -13,7 +13,7 @@ public class UserTest extends BaseTest {
                 .openAccountRegistrationPage()
                 .verifyHeader()
                 .registerUser()
-                .verifyRegristationSuccesful()
+                .verifyRegistrationSuccesful()
                 .continueToMyAccount()
                 .verifyHeader();
     }

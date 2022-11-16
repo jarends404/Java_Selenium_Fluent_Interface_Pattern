@@ -1,6 +1,7 @@
 package nl.example.pages;
 
 import nl.example.pages.common.BasePage;
+import org.openqa.selenium.WebElement;
 
 public class LoginPage extends BasePage {
 
@@ -11,7 +12,11 @@ public class LoginPage extends BasePage {
     }
 
     public AccountRegistrationPage openAccountRegistrationPage() {
-        getBrowser().findElementByLinkText(REGISTER_LINK_TEXT).click();
+        registerButton().click();
         return new AccountRegistrationPage();
+    }
+    
+    private WebElement registerButton() {
+        return getBrowser().findElementByLinkText(REGISTER_LINK_TEXT);
     }
 }

@@ -14,7 +14,7 @@ public class RegistrationSuccessPage extends BasePage {
         return new RegistrationSuccessPage();
     }
 
-    public RegistrationSuccessPage verifyRegristationSuccesful() {
+    public RegistrationSuccessPage verifyRegistrationSuccesful() {
         Assertions.assertEquals("Your Account Has Been Created!", header().getText());
         return this;
     }
